@@ -1,0 +1,46 @@
+{% extends 'index.html' %}
+
+{% block addTaskcontent %}
+
+<div class="container" style="width:50vw">
+    <div class="form-heading-title" style="position: absolute;
+      top: 4vw;
+      right: 36vw;
+      color: white;
+      font-size: 6vw;
+      font-weight: bold;">
+        Add task
+      </div>
+      <div class="addtask-form" style="position: absolute;width: 52vw;
+      position: absolute;
+      top: 15vw;">
+
+          <form method="post" action="/add">
+            {% csrf_token %}
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label" style="color: white;">Coordie ID</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" required aria-describedby="emailHelp" name="coordieID">
+      
+                <label for="exampleInputEmail1" class="form-label" style="color: white;">Coordie email</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" required aria-describedby="emailHelp" name="coordieEmail">
+                {% comment %} <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> {% endcomment %}
+              </div>
+              <div class="mb-3 mx-10">
+                <label for="exampleInputPassword1" class="form-label" style="color: white;">Task</label>
+                <input type="text" class="form-control" required id="exampleInputPassword1" name="coordieTask">
+              </div>
+              
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+      </div>
+      <!-- <a href="/assigned"><button type="button" class="btn btn-primary" >Assigned Tasks</button></a> -->
+      <div class="return-button" style="position: absolute;
+      top: 30.7vw;
+      right: 62vw;">
+          <a href="/"><button type="button" class="btn btn-secondary" >Return</button></a>
+          
+      </div>
+
+</div>
+
+{% endblock addTaskcontent %}

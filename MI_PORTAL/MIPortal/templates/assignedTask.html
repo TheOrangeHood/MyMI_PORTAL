@@ -1,0 +1,67 @@
+{% extends 'index.html' %}
+
+{% block addTaskcontent %}
+
+<div class="container" style="width:50vw">
+
+  <table class="table" style="color: white;">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">CG</th>
+        <th scope="col">CoordieID</th>
+        <th scope="col">Email</th>
+        <th scope="col">Task</th>
+        <th scope="col">Activity</th>
+        {% if user.is_authenticated and user.is_superuser %}
+        <th scope="col">Status</th>
+        {% endif %}
+      </tr>
+    </thead>
+    <tbody>
+      {% comment %} run a for loop to iterate through all the tasks {% endcomment %}
+      {% for task in tasks %}
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{task.cg}}</td>
+        <td>{{task.coordieID}}</td>
+        <td>{{task.coordieEmail}}</td>
+        <td>{{task.coordieTask}}</td>
+        {% comment %} <td>{{task.taskCompleted}}</td> {% endcomment %}
+        {% if user.is_authenticated and user.is_superuser %}
+        <td scope="col">
+          <a type="button" class="btn btn-danger" href="{% url 'deleteTask' task.id %}">Delete</a>
+        </td>
+        <td scope="col">
+          {% if task.taskCompleted  %}
+            <img src="../../static/download.jpg" alt="" class="green-tick" style="width: 18%;">
+          {% else %}
+            Not Done
+          {% endif %} 
+        </td>
+           
+        {% else %}
+        <td scope="col">
+          {% if task.taskCompleted  %}
+          <img src="../../static/download.jpg" alt="" class="green-tick" style="width: 18%;">
+          {% else %}
+          <a type="button" class="btn btn-danger" href="{% url 'completeTask' task.id %}">Finish</a>
+          {% endif %}
+            
+        </td>
+
+       
+        {% endif %}
+        <!-- {% url 'deleteTask' task.id %} -->
+      </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+
+  <a href="/"><button type="button" class="btn btn-warning" style="position: absolute;
+    bottom: 8vw; right: 48vw;">Return</button></a>
+
+</div>
+
+{% endblock addTaskcontent %}
