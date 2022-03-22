@@ -20,8 +20,8 @@ def index(request):
 def assignedTask(request):
     # if request.user=='admin':
         # user = self.request.user
-        # alltasks = CoordieAssignedTask.objects.filter(cg=request.user)
-        alltasks = CoordieAssignedTask.objects.all()
+        alltasks = CoordieAssignedTask.objects.filter(cg=request.user)
+        # alltasks = CoordieAssignedTask.objects.all()
 
         # alltasks = CoordieAssignedTask.objects.filter(coordieID=request.user)
         context = {'tasks': alltasks}
